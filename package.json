@@ -2,7 +2,9 @@
   "name": "csproj-check",
   "version": "0.0.1",
   "description": "Check visual studio csproj files for errors.",
-  "main": "dist/cli.js",
+  "bin": {
+    "csproj-check": "dist/cli.js"
+  },
   "scripts": {
     "test": "gulp",
     "build": "gulp build",
@@ -27,13 +29,13 @@
     "babel-core": "^5.8.23",
     "babel-eslint": "^4.0.5",
     "chai": "^3.2.0",
-    "del": "^1.1.1",
+    "del": "^2.0.2",
     "gulp": "^3.8.10",
     "gulp-babel": "^5.0.0",
     "gulp-chmod": "^1.2.0",
     "gulp-filter": "^3.0.1",
     "gulp-istanbul": "^0.10.0",
-    "gulp-jscs": "^2.0.0",
+    "gulp-jscs": "^3.0.1",
     "gulp-load-plugins": "^0.10.0",
     "gulp-mocha": "^2.0.0",
     "gulp-notify": "^2.1.0",
