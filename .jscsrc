@@ -1,0 +1,6 @@
+{
+  "preset": "google",
+  "maximumLineLength": null,
+  "disallowSemicolons": true,
+  "requireSemicolons": false
+}
