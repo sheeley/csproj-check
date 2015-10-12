@@ -45,11 +45,11 @@ var CSProjCheck = (function () {
         xml.on('updateElement: Compile', self.fileExists.bind(self));
         xml.on('updateElement: Content', self.fileExists.bind(self));
         xml.on('end', function () {
-          if (self.reverseCheck) {
-            self.checkFileTree.call(self, callback);
-          } else {
-            callback(null, self.errors);
-          }
+          // if (self.reverseCheck) {
+          //   self.checkFileTree.call(self, callback)
+          // } else {
+          callback(null, self.errors);
+          // }
         });
       });
     }
@@ -70,34 +70,32 @@ var CSProjCheck = (function () {
         }
       });
     }
-  }, {
-    key: 'checkFileTree',
-    value: function checkFileTree(callback) {
-      var _this = this;
 
-      this.log('checking ' + this.fileName);
-      var self = this;
-      var globStr = this.parsed.dir + '/**/*';
-      if (this.ignoreFiles != null && this.ignoreFiles.length > 0) {
-        globStr = this.parsed.dir + '/**/!(*' + this.ignoreFiles.join('*|*') + ')';
-      }
-      this.log('globstr', globStr);
-      var glob = new Glob(globStr);
-      glob.on('match', function (filePath) {
-        if (filePath.indexOf('node_modules') !== -1) {
-          return;
-        }
-        var resolvedPath = filePath.replace(self.parsed.dir + '/', '');
-        _this.log(resolvedPath);
-        if (self.paths[resolvedPath] !== true) {
-          self.errors++;
-          self.log(filePath + ' is missing from csproj');
-        }
-      });
-      glob.on('end', function () {
-        callback(null, self.errors);
-      });
-    }
+    // checkFileTree(callback) {
+    //   this.log(`checking ${this.fileName}`)
+    //   let self = this
+    //   let globStr = this.parsed.dir + '/**/*'
+    //   if (this.ignoreFiles != null && this.ignoreFiles.length > 0) {
+    //     globStr = this.parsed.dir + '/**/!(*' + this.ignoreFiles.join('*|*') + ')'
+    //   }
+    //   this.log('globstr', globStr)
+    //   let glob = new Glob(globStr)
+    //   glob.on('match', (filePath) => {
+    //     if (filePath.indexOf('node_modules') !== -1) {
+    //       return
+    //     }
+    //     let resolvedPath = filePath.replace(self.parsed.dir + '/', '')
+    //     this.log(resolvedPath)
+    //     if (self.paths[resolvedPath] !== true) {
+    //       self.errors++
+    //       self.log(`${filePath} is missing from csproj`)
+    //     }
+    //   })
+    //   glob.on('end', () => {
+    //     callback(null, self.errors)
+    //   })
+    // }
+
   }, {
     key: 'log',
     value: function log(message) {

@@ -37,7 +37,7 @@ createLintTask('lint-test', ['test/**/*.js'])
 
 // Build two versions of the library
 gulp.task('build', ['lint-src', 'clean'], function() {
-  var filter = $.filter('src/cli.js')
+  var filter = $.filter('src/cli.js', {restore: true})
   // Create our output directory
   mkdirp.sync(destinationFolder)
   return gulp.src('src/**/*.js')
@@ -45,7 +45,7 @@ gulp.task('build', ['lint-src', 'clean'], function() {
     .pipe($.babel({blacklist: ['useStrict']}))
     .pipe(filter)
     .pipe($.chmod(755))
-    .pipe(filter.restore())
+    .pipe(filter.restore)
     .pipe(gulp.dest(destinationFolder))
 
 })
