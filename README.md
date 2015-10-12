@@ -6,3 +6,17 @@
 [![devDependency Status](https://david-dm.org/sheeley/csproj-check/dev-status.svg)](https://david-dm.org/sheeley/csproj-check#info=devDependencies)
 
 Check visual studio csproj files for errors. Useful as a git pre-commit hook.
+
+## Installation
+`npm i -g csproj-check`
+
+## Usage
+```
+csproj-check # defaults to **/*
+csproj-check a/specific/project.csproj another/project.csproj
+```
+
+## Add Git pre-commit hook
+```
+ln -s `which csproj-check` .git/hooks/pre-commit
+```
